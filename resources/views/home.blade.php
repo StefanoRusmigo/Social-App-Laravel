@@ -6,7 +6,7 @@
         <div class="col-sm-3 well">
           <div class="well">
             <p><a href="#">My Profile</a></p>
-            <img src="{{ Auth::user()->avatar ? Auth::user()->avatar : '/avatars/default.png' }}" class="img-circle" height="65" width="65" alt="Avatar">
+            <img src="storage/{{Auth::user()->avatar}}" class="img-circle" height="65" width="65" alt="Avatar">
           </div>
           <div class="well">
             <p><a href="#">Interests</a></p>

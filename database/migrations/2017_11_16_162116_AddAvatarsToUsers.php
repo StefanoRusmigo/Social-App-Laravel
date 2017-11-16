@@ -14,7 +14,7 @@ class AddAvatarsToUsers extends Migration
     public function up()
     {
         Schema::table('users',function($table){
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('default.png');
         });
     }
 

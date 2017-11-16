@@ -62,13 +62,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $image_path = request('avatar')->store('/avatars');
+       if(request('avatar')) { 
+        $image_path = request('avatar')->store('/public');
+       }else{
+        $image_path = 'storage/default.png';
+       }
+
+
 
         return User::create([
-            'name' => $data['name'],
+            'name' => ucwords($data['name']),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'avatar'  => $data['avatar'],
+            'avatar'  => basename($image_path),
         ]);
     }
 }
