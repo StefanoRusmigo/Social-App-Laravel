@@ -8356,3 +8356,8 @@ footer {
   padding: 15px;
 }
 
+.status_text {
+  width: 100%;
+  line-height: 3;
+}
+
