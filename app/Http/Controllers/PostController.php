@@ -30,7 +30,7 @@ class PostController extends Controller
     		$post->delete();
     	}else{
     		$this->errors[] = "Cant delete this post";
-    		return redirect('/home')
+    		return redirect('/home');
     	}
 
     }

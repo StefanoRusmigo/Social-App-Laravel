@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
 
     public function friends(){
-        return $this->belongsToMany('User','friend_user','user_id','friend_id')->get();
+        return $this->belongsToMany('App\User','friend_user','user_id','friend_id')->get();
     }
 
       public function feed(){
@@ -51,6 +51,12 @@ class User extends Authenticatable
             $feed[] = $post;
         }
 
-        return $feed ;
+
+         uasort($feed, 
+        function($a,$b){
+            return $a->created_at > $b->created_at ? false: true;
+        });
+
+         return $feed;
     }
 }

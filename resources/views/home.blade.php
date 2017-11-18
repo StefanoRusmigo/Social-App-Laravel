@@ -12,8 +12,8 @@
                 <div class="panel panel-default text-left">
                 <div class="panel-body">
            
-                  <input type="textarea" name="body" value="Status: Feeling Blue" 
-                         class="status_text">
+                  <input type="textarea" name="body" placeholder="Status: Feeling Blue" 
+                         class="status_text" maxlength="240">
                 @include('layouts.errors')             
 
                   <input type="submit" name="submit" value="submit" class="btn btn-primary" style="float: right;">
@@ -30,21 +30,23 @@
               
             </div>
           </div>
-          
+          @foreach($feed as $post)
+
           <div class="row">
             <div class="col-sm-3">
               <div class="well">
-               <p>John</p>
-               <img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+               <p>{{ $post->user->name }}</p>
+               <img src="storage/{{$post->user->avatar}}" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">
               <div class="well">
-                <p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+                <p>{!! $post->body !!}</p>
               </div>
             </div>
           </div>
-          
+
+          @endforeach
              
         </div>
     @include('layouts.right_sidebar')
