@@ -80,7 +80,7 @@
 
            
            
-            	<?php  $rand_colors = $colors=['default','primary','success','info','warning','danger'];?>
+            	<?php  $rand_colors = $colors=['default','success','info','warning','danger'];?>
             <p>
             @foreach($user->interests as $interest)
              <?php 
@@ -114,15 +114,25 @@
             </form>
             @endif
           </div>
-
+          @if($auth==1)
+          @if(count($user->viewers)>0)
           <div class="alert alert-success fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
             <p><strong>Ey!</strong></p>
-            People are looking at your profile. Find out who.
+            People are looking at your profile. Check below to find out who.
           </div>
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
-          <p><a href="#">Link</a></p>
+          @else
+           <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <p><strong>Ey!</strong></p>
+            No one has looked at your profile
+          </div>
+          @endif
+          @foreach($user->viewers as $viewer)
+          <p><a href="{{ route('show_user',$viewer) }}">{{ $viewer->name }}</a></p>
+     
+          @endforeach
+          @endif
         </div>
         </div>
         </div>

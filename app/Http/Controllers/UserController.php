@@ -15,10 +15,14 @@ class UserController extends Controller
 
     public function show($user_id){
     	 $user = User::find($user_id);
-    	 $auth = (\Auth::user()==$user)? 1 :-1;
+         $auth_user = \Auth::user();
+    	 $auth = ($auth_user==$user)? 1 :-1;
     	 $interests = Interest::all();
-    	if ($user )
+    	if ($user)
     		{
+                if($user != $auth_user && !($user->viewers->contains($auth_user))){
+                    $user->viewers()->attach($auth_user);
+                }
 
     			return view('user.show',compact('user','auth','interests'));
 

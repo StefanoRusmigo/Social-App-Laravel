@@ -40,6 +40,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Interest');
     }
 
+    public function viewers(){
+        return $this->belongsToMany('App\User','user_viewer','user_id','viewer_id');
+    }
+
       public function feed(){
       $friends = $this->friends;
 
