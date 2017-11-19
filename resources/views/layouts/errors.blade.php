@@ -1,4 +1,5 @@
  @if(count($errors))
+<?php  dd(count($errors)); ?>
   <div class="form-group">
   <div class="alert alert-danger">
     <ul>

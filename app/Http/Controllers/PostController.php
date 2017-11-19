@@ -8,6 +8,12 @@ use \Auth;
 
 class PostController extends Controller
 {
+
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function create(Request $request){
     	$this->validate($request,[
     		'body'=>'required|max:240'
@@ -29,7 +35,7 @@ class PostController extends Controller
     	if($post = Post::find($post_id) && $post->user == Auth::user()){
     		$post->delete();
     	}else{
-    		$this->errors[] = "Cant delete this post";
+            session()->flash('message',"Cant delete this post");
     		return redirect('/home');
     	}
 

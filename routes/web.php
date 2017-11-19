@@ -12,11 +12,18 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::post('/home', 'PostController@create')->name('create_post');
+
+Route::get('/user/{user_id}', 'UserController@show')->name('show_user');
+Route::post('/user/{user_id}', 'UserController@update')->name('update_user');
+
+Route::post('/user/interest/{user_id}', 'InterestController@create')->name('create_interest');
+Route::get('/user/interest/{interest_id}/{user_id}', 'InterestController@delete')->name('delete_interest');
+

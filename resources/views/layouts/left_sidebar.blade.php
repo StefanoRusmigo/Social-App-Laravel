@@ -1,5 +1,4 @@
-<div class="container text-center">    
-      <div class="row">
+
         <div class="col-sm-3 well">
           <div class="well">
             <p><a href="#">My Profile</a></p>
@@ -25,3 +24,4 @@
           <p><a href="#">Link</a></p>
           <p><a href="#">Link</a></p>
         </div>
+    

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
     @include('layouts.left_sidebar')
 
         <div class="col-sm-7">
-        
+        @include('layouts.flash')
           <div class="row">
             <div class="col-sm-12">
               <form method="POST" action="/home" enctype="multipart/form-data">
@@ -50,8 +51,7 @@
              
         </div>
     @include('layouts.right_sidebar')
-        </div>
-      </div>
-    </div>
+        
+     
 
 @endsection
