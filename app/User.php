@@ -44,6 +44,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User','user_viewer','user_id','viewer_id');
     }
 
+
       public function feed(){
       $friends = $this->friends;
 
@@ -58,8 +59,6 @@ class User extends Authenticatable
         foreach ($this->posts as $post) {
             $feed[] = $post;
         }
-
-
          uasort($feed, 
         function($a,$b){
             return $a->created_at > $b->created_at ? false: true;

@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $feed = \Auth::user()->feed();
-        return view('home',compact('feed'));
+        $user = \Auth::user();
+        return view('home',compact('user'));
     }
 }

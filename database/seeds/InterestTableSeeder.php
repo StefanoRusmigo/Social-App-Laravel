@@ -13,17 +13,6 @@ class InterestTableSeeder extends Seeder
     {
 
 
-$interest_array=['Reading','Movies','Fishing','Gardening','Walking','Exercise','Hunting' ,'Sports',
-'Shopping','Traveling','Golf','Relaxing','Music','Crafts','Bicycling'];
-
-foreach ($interest_array as $interest ) {
-
-        DB::table('interests')->insert([
-        	
-        	  'interest' => $interest
-        
-        ]);
-    }
 
     }
 }

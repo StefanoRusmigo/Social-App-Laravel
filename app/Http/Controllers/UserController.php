@@ -17,7 +17,7 @@ class UserController extends Controller
     	 $user = User::find($user_id);
          $auth_user = \Auth::user();
     	 $auth = ($auth_user==$user)? 1 :-1;
-    	 $interests = Interest::all();
+         $interests = Interest::all()->diff($user->interests);
     	if ($user)
     		{
                 if($user != $auth_user && !($user->viewers->contains($auth_user))){

@@ -76,33 +76,11 @@
 
           </div>
           <div class="well">
-            <p><a href="#">Interests</a></p>
-
-           
-           
-            	<?php  $rand_colors = $colors=['default','success','info','warning','danger'];?>
-            <p>
-            @foreach($user->interests as $interest)
-             <?php 
-             if(empty($rand_colors)){$rand_colors= $colors;}
-             $color = $rand_colors[0]; 
-            array_shift($rand_colors);
-             ?>
-             @if($auth==1)
-              <span class="label label-{{$color}}">{{ $interest->interest  }} <a href="
-              {{ route('delete_interest',['interest_id'=>$interest->id,'user_id'=>$user->id]) }} " >
-              <i class="fa fa-remove"></i></a></span>
-              @else
-              <span class="label label-{{$color}}">{{ $interest->interest  }}</span>
-              @endif
-              
-             @endforeach
-            </p>
+            @include('layouts.interests')
 
              @if($auth==1)
             <form method="post" action="{{ route('create_interest', $user->id)  }}">
             {{ csrf_field() }}      
-
           <div class="form-group">
             <select name="interests" class="btn btn-primary dropdown-toggle">
               @foreach($interests as $interest)
@@ -114,25 +92,7 @@
             </form>
             @endif
           </div>
-          @if($auth==1)
-          @if(count($user->viewers)>0)
-          <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <p><strong>Ey!</strong></p>
-            People are looking at your profile. Check below to find out who.
-          </div>
-          @else
-           <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-            <p><strong>Ey!</strong></p>
-            No one has looked at your profile
-          </div>
-          @endif
-          @foreach($user->viewers as $viewer)
-          <p><a href="{{ route('show_user',$viewer) }}">{{ $viewer->name }}</a></p>
-     
-          @endforeach
-          @endif
+          @include('layouts.viewers')
         </div>
         </div>
         </div>

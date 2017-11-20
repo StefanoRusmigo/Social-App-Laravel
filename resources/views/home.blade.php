@@ -31,7 +31,7 @@
               
             </div>
           </div>
-          @foreach($feed as $post)
+          @foreach($user->feed() as $post)
 
           <div class="row">
             <div class="col-sm-3">
