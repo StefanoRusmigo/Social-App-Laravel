@@ -13,11 +13,15 @@
         <li class="active"><a href="/">Home</a></li>
         <li><a href="#">Messages</a></li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" method="post" 
+            action="{{ route('filter_users') }}" id="search_form">
+            {{ csrf_field() }}
         <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Search..">
+
+          <input type="text" class="form-control" name="search_input" placeholder="Search.." >
+
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="button" onclick="document.getElementById('search_form').submit(); ">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>        

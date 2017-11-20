@@ -5,7 +5,7 @@
            
             	<?php  $rand_colors = $colors=['default','success','info','warning','danger'];?>
             <p>
-            @foreach($user->interests as $interest)
+            @foreach(Auth::user()->interests as $interest)
              <?php 
              if(empty($rand_colors)){$rand_colors= $colors;}
              $color = $rand_colors[0]; 

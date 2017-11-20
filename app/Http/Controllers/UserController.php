@@ -13,6 +13,12 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    public function index(Request $request){
+        $search_text = $request->input('search_input');
+        $users = User::where('name', 'LIKE', "%".$search_text."%")->get();
+    return view('user.index', compact('users'));
+    }
+
     public function show($user_id){
     	 $user = User::find($user_id);
          $auth_user = \Auth::user();
