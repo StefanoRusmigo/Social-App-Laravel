@@ -12,21 +12,20 @@
            <p>{{ $user->name }}</p>
             @endif
            
-            <form method="post" action="{{ route('show_user',$user->id) }}", 
+            <form method="post" action="{{ route('update_user',$user->id) }}", 
             	  enctype="multipart/form-data">
             	 {{ csrf_field() }}
 
             	  <div class="form-group">
             	  	<img src="/storage/{{$user->avatar}}" class="img-circle" 
           		  	height="65" width="65" alt="Avatar">
-
             	  </div>
-            	  @if($auth==1)
+
+          @if($auth==1)
             		<div class="form-group">
             			<div class="col-md-6  col-md-offset-4 ">
             	  	<input type="file" name="avatar" style="float: left;">
           		  	</div>
-
             		</div>
 				  @endif
 
@@ -35,7 +34,8 @@
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name')? old('name'): $user->name }}" required autofocus 
+                                <input id="name" type="text" class="form-control" name="name" 
+                                value="{{  $user->name }}" required autofocus 
                                 {{ $auth==1?'':'readonly' }}>
 
                                 @if ($errors->has('name'))
@@ -50,7 +50,8 @@
                             <label for="name" class="col-md-4 control-label">Email</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="email" value="{{ old('name')? old('name'): $user->email }}" required autofocus
+                                <input id="name" type="text" class="form-control" name="email" 
+                                value="{{ $user->email }}" required autofocus
                                 {{ $auth==1?'':'readonly' }}> 
 
                                 @if ($errors->has('email'))
@@ -60,6 +61,7 @@
                                 @endif
                             </div>
                      	</div>
+                      
                      	@if($auth==1)
                      	<div class="form-group">
                             <div class="col-md-6  col-md-offset-4  " >
@@ -90,9 +92,22 @@
         
             <input type="submit" name="submit" value="Add" class="btn btn-primary"></div>
             </form>
-            @endif
-          </div>
           @include('layouts.viewers')
+            @else
+          </div>
+
+          <form action="{{Auth::user()->friends->contains($user)?
+           route('remove_friend'):route('add_friend') }}"  method="POST" ">
+
+              {{ csrf_field() }}
+              <input type="hidden" name="friend_id" value="{{ $user->id }}">
+               <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">{{ Auth::user()->friends->contains($user)? 'Remove friend':'Add friend' }}
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+          </form>
+          @endif
         </div>
         </div>
         </div>

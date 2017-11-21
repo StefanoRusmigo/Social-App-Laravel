@@ -14,20 +14,23 @@ class UserController extends Controller
     }
 
     public function index(Request $request){
-        $search_text = $request->input('search_input');
-        $users = User::where('name', 'LIKE', "%".$search_text."%")->get();
-    return view('user.index', compact('users'));
+        $search_text =$request->input('text');
+        $users = User::where('name', 'LIKE', "%".$search_text."%")
+                       ->orderBy('name')->get();
+    return view('user.index', compact('users','search_text'));
     }
 
     public function show($user_id){
     	 $user = User::find($user_id);
          $auth_user = \Auth::user();
     	 $auth = ($auth_user==$user)? 1 :-1;
-         $interests = Interest::all()->diff($user->interests);
     	if ($user)
     		{
-                if($user != $auth_user && !($user->viewers->contains($auth_user))){
+                $interests = Interest::all()->diff($user->interests);
+
+                if($user->id != $auth_user->id && !($user->viewers->contains($auth_user))){
                     $user->viewers()->attach($auth_user);
+                    $user->save();
                 }
 
     			return view('user.show',compact('user','auth','interests'));
@@ -40,7 +43,8 @@ class UserController extends Controller
 
 
     public function update($user_id){
-    	if ($user = User::find($user_id) && $user=\Auth::user())
+        $user = User::find($user_id);
+    	if ($user && $user==\Auth::user())
     		{
     			if(request('avatar')) { 
        			 $image_path = request('avatar')->store('/public');

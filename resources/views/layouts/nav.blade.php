@@ -18,7 +18,7 @@
             {{ csrf_field() }}
         <div class="form-group input-group">
 
-          <input type="text" class="form-control" name="search_input" placeholder="Search.." >
+          <input type="text" class="form-control" name="text" placeholder="Search.." >
 
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" onclick="document.getElementById('search_form').submit(); ">

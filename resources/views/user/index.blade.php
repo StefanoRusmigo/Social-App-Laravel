@@ -24,8 +24,28 @@
               	</a>
               </p>
                <p>{{ $user->email}}</p>
+        @if(!(Auth::id()==$user->id))      
+          <form action="{{Auth::user()->friends->contains($user)?
+           route('remove_friend'):route('add_friend') }}"  method="POST" ">
 
-                <p></p>
+              {{ csrf_field() }}
+              <input type="hidden" name="friend_id" value="{{ $user->id }}">
+              <input type="hidden" name="search_text" value="{{ $search_text }}">
+
+               <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">{{ Auth::user()->friends->contains($user)? 'Remove friend':'Add friend' }}
+              <span class="glyphicon glyphicon-search"></span>
+            </button>
+          </span>        
+          </form>
+        @else 
+            <p>
+              <a href="/user/{{ $user->id }}">Edit my profile</a>
+            </p>    
+        @endif
+              
+        
+              
               </div>
               	<div style="clear: both;"></div>
 
