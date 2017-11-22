@@ -13,10 +13,7 @@ class MessageController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-    	$messages = \Auth::user()->messages_receive;
-    	return view('message.index',compact('messages'));
-    }
+    
 
     public function show($user_id){
 

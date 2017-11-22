@@ -35,7 +35,6 @@ Route::post('/users/friends', 'FriendController@index')->name('show_friend');
 Route::post('/add_friend', 'FriendController@create')->name('add_friend');
 Route::post('/remove_friend', 'FriendController@delete')->name('remove_friend');
 
-Route::get('/messages',  'MessageController@index')->name('message_index');
 Route::get('/users/{user_id}/message',  'MessageController@show')->name('message');
 Route::post('/users/message',  'MessageController@create')->name('send_message');
 

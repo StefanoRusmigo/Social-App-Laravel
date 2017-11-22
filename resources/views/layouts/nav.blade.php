@@ -17,7 +17,7 @@
         @else
         <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                  Messages({{ count(Auth::user()->unseen_grouped()) }} ) <span class="caret"></span>
+                                  New messages({{ count(Auth::user()->unseen_grouped()) }} ) <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">

@@ -41,7 +41,7 @@ class User extends Authenticatable
     }
 
     public function viewers(){
-        return $this->belongsToMany('App\User','user_viewer','user_id','viewer_id');
+        return $this->belongsToMany('App\User','user_viewer','user_id','viewer_id')->orderBy('created_at');
     }
 
     public function messages_receive(){

@@ -35,11 +35,16 @@
                 
 
 
-              <p class="col-sm-6">
+              <p class="col-sm-5">
                 <a href="/user/{{ $friend }}">{{ $friend->name }}</a>
               </p>
 
-              <div class="col-sm-4">
+
+              <p class="col-sm-5">
+               {{ $friend->email }}
+              </p>
+
+               <div class="col-sm-5">
                 <form action="{{ route('remove_friend') }}"  method="POST" ">
 
                       {{ csrf_field() }}
@@ -47,14 +52,17 @@
                        <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">Remove 
                       <span class="glyphicon glyphicon-user"></span> 
-                    </button>
-                  </span>        
+                    </button> 
+                  </span>      
+
                 </form>
               </div>
 
-              <p class="col-sm-6">
-               {{ $friend->email }}
-              </p>
+               <div class="col-sm-5">
+              <a class="btn btn-default" href="/users/{{ $friend->id }}/message">Send Message
+              <span class="glyphicon glyphicon-envelope"></span>
+            </a>
+               </div>
 
               
 
