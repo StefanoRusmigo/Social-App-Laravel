@@ -103,7 +103,7 @@
               <input type="hidden" name="friend_id" value="{{ $user->id }}">
                <span class="input-group-btn">
             <button class="btn btn-default" type="submit">{{ Auth::user()->friends->contains($user)? 'Remove friend':'Add friend' }}
-              <span class="glyphicon glyphicon-search"></span>
+              <span class="glyphicon glyphicon-user"></span>
             </button>
           </span>        
           </form>

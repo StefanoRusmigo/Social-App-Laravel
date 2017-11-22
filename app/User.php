@@ -44,6 +44,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User','user_viewer','user_id','viewer_id');
     }
 
+    public function messages_receive(){
+        return $this->hasMany('App\Message','receiver_id');
+    }
+
+       public function messages_send(){
+        return $this->hasMany('App\Message','user_id');
+    }
+
 
       public function feed(){
       $friends = $this->friends;
@@ -66,4 +74,47 @@ class User extends Authenticatable
 
          return $feed;
     }
+
+    public function conversation(){
+        $conv = array();
+        $receive = \Auth::user()->messages_receive->where('user_id','=',$this->id);
+        $send = \Auth::user()->messages_send->where('receiver_id','=',$this->id);
+       
+        foreach($receive as $mes){
+             $conv[] =$mes;
+        }
+
+         foreach($send as $mes){
+             $conv[] =$mes;
+        }
+
+        uasort($conv, 
+        function($a,$b){
+            return $a->created_at > $b->created_at ? false: true;
+        });
+        return $conv;
+    }
+
+    public function unseen(){
+      return  $this->messages_receive()->where('seen','=',false);
+
+    }
+
+    public function unseen_grouped(){
+      $unseen =  $this->unseen();
+      $group_unseen = array();
+      $times = 1;      
+
+      foreach($unseen->get() as $value){
+        if(array_key_exists($value->user->name,$group_unseen)){
+            $group_unseen[$value->user->name][0] +=1;
+        }else{
+       $group_unseen[$value->user->name] = array($times,$value->user->id);
+
+        }
+      }
+      return $group_unseen;
+    }
+
+
 }

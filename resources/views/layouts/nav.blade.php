@@ -11,7 +11,28 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a></li>
+        <li><a href="/users/friends">Friends</a></li>
+        @guest
         <li><a href="#">Messages</a></li>
+        @else
+        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                  Messages({{ count(Auth::user()->unseen_grouped()) }} ) <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                  @foreach(Auth::user()->unseen_grouped() as $key => $value)
+                                    <li>
+                                        <a href="/users/{{ $value[1] }}/message">
+                                           by:  {{ $key }}({{ $value[0] }})
+                                        </a>
+                                    </li>
+                                  @endforeach
+                                </ul>
+                            </li>
+
+        @endguest
+
       </ul>
       <form class="navbar-form navbar-right" role="search" method="post" 
             action="{{ route('filter_users') }}" id="search_form">

@@ -14,10 +14,10 @@
 
        	
               <div class="well">
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                <a href="{{ route('show_user',$user) }}"> <img src="\storage/{{$user->avatar}}" class="img-circle" height="55" width="55" alt="Avatar"></a>
               </div>
-            <div class="col-sm-9">
+            <div class="col-sm-10">
               <p>
               	<a href="{{ route('show_user',$user) }}">
               		{{ $user->name }}
@@ -32,12 +32,18 @@
               <input type="hidden" name="friend_id" value="{{ $user->id }}">
               <input type="hidden" name="search_text" value="{{ $search_text }}">
 
-               <span class="input-group-btn">
+               <span class=" 10">
             <button class="btn btn-default" type="submit">{{ Auth::user()->friends->contains($user)? 'Remove friend':'Add friend' }}
-              <span class="glyphicon glyphicon-search"></span>
+              <span class="glyphicon glyphicon-user"></span>
             </button>
-          </span>        
+                 
           </form>
+
+
+            <a class="btn btn-default" href="/users/{{ $user->id }}/message">Send Message
+              <span class="glyphicon glyphicon-envelope"></span>
+            </a>
+          </span>        
         @else 
             <p>
               <a href="/user/{{ $user->id }}">Edit my profile</a>

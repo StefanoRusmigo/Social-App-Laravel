@@ -37,7 +37,7 @@
             <div class="col-sm-3">
               <div class="well">
                <p>{{ $post->user->name }}</p>
-               <img src="storage/{{$post->user->avatar}}" class="img-circle" height="55" width="55" alt="Avatar">
+               <img src="\storage/{{$post->user->avatar}}" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>
             <div class="col-sm-9">

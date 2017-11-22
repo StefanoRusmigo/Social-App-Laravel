@@ -12,6 +12,16 @@ class FriendController extends Controller
 
 	}
 
+    public function index(){
+        if($search_text = request('text')){
+            $friends = \Auth::user()->friends()->where('name', 'LIKE', "%".$search_text."%")
+                       ->orderBy('name')->get();
+        }else{ 
+            $friends = \Auth::user()->friends;
+        }
+        return view('user.friends',compact('friends'));
+    }
+
     public function create(){
     	$user = \Auth::user();
     	$friend = User::find(request('friend_id'));
