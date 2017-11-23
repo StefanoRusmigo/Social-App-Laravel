@@ -38,4 +38,6 @@ Route::post('/remove_friend', 'FriendController@delete')->name('remove_friend');
 Route::get('/users/{user_id}/message',  'MessageController@show')->name('message');
 Route::post('/users/message',  'MessageController@create')->name('send_message');
 
+Route::post('/comments', 'CommentController@create');
+
 	

@@ -19,7 +19,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                   New messages({{ count(Auth::user()->unseen_grouped()) }} ) <span class="caret"></span>
                                 </a>
-
+                               @if(count(Auth::user()->unseen_grouped())>0) 
                                 <ul class="dropdown-menu">
                                   @foreach(Auth::user()->unseen_grouped() as $key => $value)
                                     <li>
@@ -29,6 +29,7 @@
                                     </li>
                                   @endforeach
                                 </ul>
+                              @endif
                             </li>
 
         @endguest
