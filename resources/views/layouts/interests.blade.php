@@ -1,5 +1,5 @@
 <p>
-  <a href="#">Interests</a></p>
+  <a href="/user/{{ Auth::id() }}">Interests</a></p>
 
            
            

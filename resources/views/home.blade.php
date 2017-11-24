@@ -36,7 +36,7 @@
           <div class="row">
             <div class="col-sm-3">
               <div class="well">
-               <p>{{ $post->user->name }}</p>
+               <p><a href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a></p>
                <img src="\storage/{{$post->user->avatar}}" class="img-circle" height="55" width="55" alt="Avatar">
               </div>
             </div>

@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     public function comments(){
-        return $this->hasMany('App\Comment','user_id');
+        return $this->hasMany('App\Comment','user_id')->orderBy('created_at');  
     }
 
 

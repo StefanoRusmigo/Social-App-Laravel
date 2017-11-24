@@ -15,7 +15,7 @@
                   {{ csrf_field() }}
                   <input type="hidden" name="receiver" value="{{ $receiver->id }}">
                   <div class="form-group">
-                     <textarea class="col-sm-12" name="message" rows="4" ></textarea>
+                     <textarea class="col-sm-12" style="margin: 1px" name="message" rows="4" ></textarea>
                   </div>
 
                   <div class="form-group">
